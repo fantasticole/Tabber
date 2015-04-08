@@ -1,0 +1,24 @@
+{
+  "name": "Cheese",
+  "short_name": "cheese",
+  "manifest_version": 2,
+  "description": "This extension lets you create notes on a webpage.",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentscript.js"]
+    }
+  ],
+
+  "browser_action": {
+    "default_icon": "cheese.png",
+    "default_popup": "popup.html",
+    "default_title": "Click here!"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+    // APIs you want permissions for.
+  ]
+}

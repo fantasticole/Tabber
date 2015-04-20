@@ -1,6 +1,6 @@
 {
-  "name": "Cheese",
-  "short_name": "cheese",
+  "name": "Tab Counter",
+  "short_name": "tabcount",
   "manifest_version": 2,
   "description": "This extension lets you create notes on a webpage.",
   "version": "0.1",
@@ -12,13 +12,17 @@
   ],
 
   "browser_action": {
-    "default_icon": "cheese.png",
+    "default_icon": "Mario.png",
     "default_popup": "popup.html",
     "default_title": "Click here!"
   },
+  "background": {
+    "page": "background.html"
+  },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "https://ajax.googleapis.com/",
+    "webNavigation"
     // APIs you want permissions for.
   ]
 }

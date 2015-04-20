@@ -1,12 +1,21 @@
 
-var what = document.getElementsByTagName('input');
-var how = what[0];
-console.log(what);
-console.log(how);
-
-function cap(){
-  var newWords = document.getElementById('output');
-  newWords.innerText = how.value.toUpperCase();
+function getStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
 };
+var newTabCount = document.getElementById('opened');
+newTabCount.innerText = "Tabs opened: " + getStorage('tabcount');
 
-how.addEventListener("keyup", cap);
+var tabOpen = document.getElementById('oDate');
+tabOpen.innerText = "Date: " + getStorage('date');
+
+var tabTime = document.getElementById('oTime');
+tabTime.innerText = "Time: " + getStorage('tabtime');
+
+var newCount = document.getElementById('closed');
+newCount.innerText = "Tabs closed: " + getStorage('tabsclosed');
+
+var tabClose = document.getElementById('closeDate');
+tabClose.innerText = "Date: " + getStorage('cDate');
+
+var tabCloseTime = document.getElementById('cTime');
+tabCloseTime.innerText = "Time: " + getStorage('cTabtime');

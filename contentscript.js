@@ -1,2 +1,2 @@
 console.log("hello");
-// console.log(getStorage('tracker'));
+console.log(JSON.stringify(getStorage('tracker')));

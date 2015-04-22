@@ -1,0 +1,2 @@
+To look at information in local storage:
+	'chrome://extensions > Tab Counter > Inspect views: background.html (new window) > Resources > Local Storage > chrome-extension://kballkodeficgookecejaklmpbiekmba/background.html'

@@ -9,6 +9,7 @@ if (getStorage('tracker') !== undefined){
 	tracker = getStorage('tracker');
 };
 
+
 function setStorage(key, val) {
   localStorage.setItem(key, JSON.stringify(val));
 };

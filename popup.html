@@ -4,22 +4,61 @@
     <title>Tab Counter's Popup</title>
   </head>
   <body align="center">
-    <p><b>Tab Counter</b></p>
-    <p id="opened"></p>
-    <p id="oDate"></p>
-    <p id="oTime"></p>
-    <hr>
-    <p id="closed"></p>
-    <p id="closeDate"></p>
-    <p id="cTime"></p>
+    <p id="head"><b>TAB COUNTER</b></p>
+    <table align="center">
+      <tr>
+        <td id="opened"></td>
+        <td id="closed"></td>
+      </tr>
+    </table>
+    <p id="title"><b>Most Recent:</b></p>
+    <table align="center">
+      <tr>
+        <td></td>
+        <td id="mid">Opened</td>
+        <td>Closed</td>
+      </tr>
+      <tr>
+        <td>Time:</td>
+        <td id="oTime"></td>
+        <td id="cTime"></td>
+      </tr>
+      <tr>
+        <td>Date:</td>
+        <td id="oDate"></td>
+        <td id="closeDate"></td>
+      </tr>
+    </table>
     <button id="down">Download Data!</button>
     <script src="popup.js"></script>
   </body>
   <style>
     html {
-      /*background-color: #F1F3F9;*/
-      /*color: #2084A4;*/
-      width: 150px;
+      color: #2084A4;
+      width: 250px;
+      text-align: center;
+    }
+    p {
+      font-family: Courier;
+    }
+    table {
+      border: 1px #2084A4;
+      border-style: dashed none;
+    }
+    td {
+      font-family: Courier;
+      padding: 5px;
+    }
+    #head {
+      font-size: 15px;
+    }
+    #title {
+      font-size: 13px;
+    }
+    button {
+      margin-top: 12px;
+      font-family: Courier;
+      color: #2084A4;
     }
   </style>
 </html>

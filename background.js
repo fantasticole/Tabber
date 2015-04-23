@@ -52,7 +52,6 @@ chrome.tabs.onCreated.addListener(function(tab){
 	    "Closed": 0
 	  };
 	hourly.push(obj);
-	// hourly.concat("\n" + time + "\t" + 1 + "\t" + 0);
 	setStorage('hourly', hourly);
 });
 
@@ -77,8 +76,6 @@ chrome.tabs.onRemoved.addListener(function(tab){
 	    "Closed": 1
 	  };
 	hourly.push(obj);
-	// hourly.push("date: "+time+", Opened: "+0+", Closed: "+1);
-	// hourly.concat("\n" + time + "\t" + 0 + "\t" + 1);
 	setStorage('hourly', hourly);
 });
 

@@ -32,12 +32,16 @@ document.getElementById('down').addEventListener('click', function(){
 
 document.getElementById('tsv').addEventListener('click', function(){
 	debugger;
-	base64 = window.btoa(localStorage.getItem('hourly'));
+	var data = getStorage('hourly');
+	var str = "data" + "\t" + "Opened" + "\t" + "Closed"
+	data.forEach(function(obj){
+	  str = str.concat("\n" + obj.Date + "\t" + obj.Opened + "\t" + obj.Closed);
+	});
+	base64 = window.btoa(str);
 	var url = 'data:application/octet-stream;base64,' + base64;
-	// var url = 'data:application/octet-stream;base64,' + localStorage.getItem('hourly');
 	chrome.downloads.download({
 	    url: url,
-	    filename: 'hourly.tsv'
+	    filename: 'stats.tsv'
 	});
 });
 

@@ -30,69 +30,14 @@ document.getElementById('down').addEventListener('click', function(){
 	});
 });
 
-
-
-
-
-// // create a fake object
-// var myData = {
-// 	'a': 'a',
-// 	'b': 'b',
-// 	'c': 'c'
-// };
-// add it to our localstorage
-// localStorage.setItem('data', JSON.stringify(myData));
-
-// // encode the data into base64
-// base64 = window.btoa(localStorage.getItem('tracker'));
-
-// // create an a tag
-// var a = document.createElement('a');
-// a.href = 'data:application/octet-stream;base64,' + base64;
-// a.innerHTML = 'Download';
-
-// // add to the body
-// document.body.appendChild(a);
-
-
-// // create a fake object
-// var myData = {
-// 	'a': 'a',
-// 	'b': 'b',
-// 	'c': 'c'
-// };
-// // add it to our localstorage
-// localStorage.setItem('data', JSON.stringify(myData));
-
-
-// chrome.storage.local.get(null, function(items) { // null implies all items
-//     // Convert object to a string.
-//     var result = JSON.stringify(items);
-
-//     // Save as file
-// 	var url = window.btoa(localStorage.getItem('data'));
-//     chrome.downloads.download({
-//         url: url,
-//         filename: 'filename_of_exported_file.json'
-//     });
-// });
-
-
-
-
-// document.getElementById('down').addEventListener('click', alert("Hello"));
-// function getStorage(key) {
-//   return JSON.parse(localStorage.getItem(key));
-// };
-// var info = getStorage('tracker');
-// getData.addEventListener('click', function(info){
-
-    // var result = JSON.stringify(info);
-    // var url = 'data:application/json;base64,' + btoa(result);
-    // chrome.downloads.download({
-    //     url: url,
-    //     filename: 'tabactivity.json'
-    // });
-// });
+document.getElementById('tsv').addEventListener('click', function(){
+	debugger;
+	base64 = window.btoa(localStorage.getItem('opens'));
+	var url = 'data:application/octet-stream;base64,' + base64;
+	chrome.downloads.download({
+	    url: url,
+	    filename: 'hourly.tsv'
+	});
+});
 
 

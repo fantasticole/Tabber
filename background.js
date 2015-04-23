@@ -9,6 +9,14 @@ if (getStorage('tracker') !== undefined){
 	tracker = getStorage('tracker');
 };
 
+if (getStorage('tabcount') !== undefined){
+	tabcount = getStorage('tabcount');
+};
+
+if (getStorage('tabsclosed') !== undefined){
+	tabsclosed = getStorage('tabsclosed');
+};
+
 
 function setStorage(key, val) {
   localStorage.setItem(key, JSON.stringify(val));

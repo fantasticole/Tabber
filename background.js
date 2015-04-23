@@ -4,8 +4,8 @@ var tracker = {
 	'Opened': {},
 	'Closed': {}
 };
-var opens = [];
-var closures = [];
+var hourly = [];
+
 
 if (getStorage('tracker') !== undefined){
 	tracker = getStorage('tracker');
@@ -19,18 +19,9 @@ if (getStorage('tabsclosed') !== undefined){
 	tabsclosed = getStorage('tabsclosed');
 };
 
-if (getStorage('opens') !== undefined){
-	opens = getStorage('opens');
+if (getStorage('hourly') !== undefined){
+	hourly = getStorage('hourly');
 };
-
-if (getStorage('closures') !== undefined){
-	closures = getStorage('closures');
-};
-
-// function average(obj){
-// 	obj['Opened'].forEach()
-// 	time.getMilliseconds();
-// };
 
 
 function setStorage(key, val) {
@@ -55,8 +46,14 @@ chrome.tabs.onCreated.addListener(function(tab){
 		tracker['Opened'][date] = [time];
 	};
 	setStorage('tracker', tracker);
-	opens.push(Date.now());
-	setStorage('opens', opens);
+	var obj = {
+	    "Date": Date.now(),
+	    "Opened": 1,
+	    "Closed": 0
+	  };
+	hourly.push(obj);
+	// hourly.concat("\n" + time + "\t" + 1 + "\t" + 0);
+	setStorage('hourly', hourly);
 });
 
 chrome.tabs.onRemoved.addListener(function(tab){
@@ -74,8 +71,15 @@ chrome.tabs.onRemoved.addListener(function(tab){
 		tracker['Closed'][date] = [time];
 	};
 	setStorage('tracker', tracker);
-	closures.push(Date.now());
-	setStorage('closures', closures);
+	var obj = {
+	    "Date": Date.now(),
+	    "Opened": 0,
+	    "Closed": 1
+	  };
+	hourly.push(obj);
+	// hourly.push("date: "+time+", Opened: "+0+", Closed: "+1);
+	// hourly.concat("\n" + time + "\t" + 0 + "\t" + 1);
+	setStorage('hourly', hourly);
 });
 
 

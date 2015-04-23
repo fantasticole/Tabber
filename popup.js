@@ -32,8 +32,9 @@ document.getElementById('down').addEventListener('click', function(){
 
 document.getElementById('tsv').addEventListener('click', function(){
 	debugger;
-	base64 = window.btoa(localStorage.getItem('opens'));
+	base64 = window.btoa(localStorage.getItem('hourly'));
 	var url = 'data:application/octet-stream;base64,' + base64;
+	// var url = 'data:application/octet-stream;base64,' + localStorage.getItem('hourly');
 	chrome.downloads.download({
 	    url: url,
 	    filename: 'hourly.tsv'

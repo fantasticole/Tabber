@@ -33,7 +33,7 @@ document.getElementById('down').addEventListener('click', function(){
 document.getElementById('tsv').addEventListener('click', function(){
 	debugger;
 	var data = getStorage('hourly');
-	var str = "data" + "\t" + "Opened" + "\t" + "Closed"
+	var str = "date" + "\t" + "Opened" + "\t" + "Closed"
 	data.forEach(function(obj){
 	  str = str.concat("\n" + obj.Date + "\t" + obj.Opened + "\t" + obj.Closed);
 	});

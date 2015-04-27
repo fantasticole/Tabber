@@ -30,13 +30,73 @@ document.getElementById('down').addEventListener('click', function(){
 	});
 });
 
+function hourAvg(arr){
+	var tabs = {
+		0: {'O': [], 'C': []}, 1: {'O': [], 'C': []}, 2: {'O': [], 'C': []}, 3: {'O': [], 'C': []}, 4: {'O': [], 'C': []}, 5: {'O': [], 'C': []}, 6: {'O': [], 'C': []}, 7: {'O': [], 'C': []}, 8: {'O': [], 'C': []}, 9: {'O': [], 'C': []}, 10: {'O': [], 'C': []}, 11: {'O': [], 'C': []}, 12: {'O': [], 'C': []}, 13: {'O': [], 'C': []}, 14: {'O': [], 'C': []}, 15: {'O': [], 'C': []}, 16: {'O': [], 'C': []}, 17: {'O': [], 'C': []}, 18: {'O': [], 'C': []}, 19: {'O': [], 'C': []}, 20: {'O': [], 'C': []}, 21: {'O': [], 'C': []}, 22: {'O': [], 'C': []}, 23: {'O': [], 'C': []}
+	}
+	var days = [];
+	arr.forEach(function(obj){
+		var time = new Date(obj.Date).toLocaleString()
+		var newTime = time.slice(time.indexOf(' ') + 1);
+		var date = time.slice(0, time.indexOf(',') );
+		var hour = parseInt(newTime.slice(0, newTime.indexOf(':')));
+		if (newTime[newTime.length-2] === 'A' && hour === 12){
+			hour = 0;
+		}
+		else if (newTime[newTime.length-2] === 'P' && hour < 12){
+			hour +=12;
+		}
+		tabs[hour]['O'].push(obj.Opened);
+		tabs[hour]['C'].push(obj.Closed);
+		if (days.indexOf(date) < 0){
+			days.push(date);
+		}
+	});
+	for (var x = 0; x < 24; x++){
+		if (tabs[x]['O'].length > 0){
+			tabs[x]['O'] = (tabs[x]['O'].reduce(function(a,b){return a+b}))/days.length;
+		} else if (tabs[x]['O'].length === 0){
+			tabs[x]['O'] = 0;
+		}
+		if (tabs[x]['C'].length > 0){
+			tabs[x]['C'] = (tabs[x]['C'].reduce(function(a,b){return a+b}))/days.length;
+		} else if (tabs[x]['C'].length === 0){
+			tabs[x]['C'] = 0;
+		}	
+	};
+	return tabs;
+};
+
+
+// document.getElementById('tsv').addEventListener('click', function(){
+// 	debugger;
+// 	var input = getStorage('hourly');
+// 	var data = hourAvg(input);
+// 	var str = "date" + "\t" + "Opened" + "\t" + "Closed"
+// 	data.forEach(function(obj){
+// 	  str = str.concat("\n" + 0 + "\t" + obj['O'] + "\t" + obj['C']);
+// 	});
+// 	base64 = window.btoa(str);
+// 	var url = 'data:application/octet-stream;base64,' + base64;
+// 	chrome.downloads.download({
+// 	    url: url,
+// 	    filename: 'stats.tsv'
+// 	});
+// });
+
+
 document.getElementById('tsv').addEventListener('click', function(){
 	debugger;
-	var data = getStorage('hourly');
-	var str = "date" + "\t" + "Opened" + "\t" + "Closed"
-	data.forEach(function(obj){
-	  str = str.concat("\n" + obj.Date + "\t" + obj.Opened + "\t" + obj.Closed);
-	});
+	// var data = getStorage('hourly');
+	var input = getStorage('hourly');
+	var data = hourAvg(input);
+	var str = "Hour" + "\t" + "Opened" + "\t" + "Closed"
+	// data.forEach(function(obj){
+	//   str = str.concat("\n" + obj.Date + "\t" + obj.Opened + "\t" + obj.Closed);
+	// });
+	for(var hour in data){
+	  str = str.concat("\n" + hour + "\t" + data[hour]['O'] + "\t" + data[hour]['C']);
+	};
 	base64 = window.btoa(str);
 	var url = 'data:application/octet-stream;base64,' + base64;
 	chrome.downloads.download({

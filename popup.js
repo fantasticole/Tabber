@@ -68,32 +68,11 @@ function hourAvg(arr){
 };
 
 
-// document.getElementById('tsv').addEventListener('click', function(){
-// 	debugger;
-// 	var input = getStorage('hourly');
-// 	var data = hourAvg(input);
-// 	var str = "date" + "\t" + "Opened" + "\t" + "Closed"
-// 	data.forEach(function(obj){
-// 	  str = str.concat("\n" + 0 + "\t" + obj['O'] + "\t" + obj['C']);
-// 	});
-// 	base64 = window.btoa(str);
-// 	var url = 'data:application/octet-stream;base64,' + base64;
-// 	chrome.downloads.download({
-// 	    url: url,
-// 	    filename: 'stats.tsv'
-// 	});
-// });
-
-
 document.getElementById('tsv').addEventListener('click', function(){
 	debugger;
-	// var data = getStorage('hourly');
 	var input = getStorage('hourly');
 	var data = hourAvg(input);
 	var str = "Hour" + "\t" + "Opened" + "\t" + "Closed"
-	// data.forEach(function(obj){
-	//   str = str.concat("\n" + obj.Date + "\t" + obj.Opened + "\t" + obj.Closed);
-	// });
 	for(var hour in data){
 	  str = str.concat("\n" + hour + "\t" + data[hour]['O'] + "\t" + data[hour]['C']);
 	};

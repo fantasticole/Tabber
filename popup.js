@@ -85,4 +85,10 @@ document.getElementById('tsv').addEventListener('click', function(){
 	});
 });
 
+document.getElementById('graph').addEventListener('click', function(activeTab)
+{
+    var newURL = "chrome-extension://kballkodeficgookecejaklmpbiekmba/index.html";
+    chrome.tabs.create({ url: newURL });
+});
+
 

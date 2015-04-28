@@ -2,6 +2,7 @@
 function getStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 };
+
 var newTabCount = document.getElementById('opened');
 newTabCount.innerText = "Opened: " + getStorage('tabcount');
 
@@ -36,7 +37,7 @@ function hourAvg(arr){
 	}
 	var days = [];
 	arr.forEach(function(obj){
-		var time = new Date(obj.Date).toLocaleString()
+		var time = new Date(obj.Date).toLocaleString('en-US')
 		var newTime = time.slice(time.indexOf(' ') + 1);
 		var date = time.slice(0, time.indexOf(',') );
 		var hour = parseInt(newTime.slice(0, newTime.indexOf(':')));
@@ -64,18 +65,18 @@ function hourAvg(arr){
 			tabs[x]['C'] = 0;
 		}	
 	};
-	return tabs;
+	var str = "Hour" + "\t" + "Opened" + "\t" + "Closed"
+	for(var hour in tabs){
+	  str = str.concat("\n" + hour + "\t" + tabs[hour]['O'] + "\t" + tabs[hour]['C']);
+	};
+	return str;
 };
 
 
 document.getElementById('tsv').addEventListener('click', function(){
 	debugger;
 	var input = getStorage('hourly');
-	var data = hourAvg(input);
-	var str = "Hour" + "\t" + "Opened" + "\t" + "Closed"
-	for(var hour in data){
-	  str = str.concat("\n" + hour + "\t" + data[hour]['O'] + "\t" + data[hour]['C']);
-	};
+	var str = hourAvg(input);
 	base64 = window.btoa(str);
 	var url = 'data:application/octet-stream;base64,' + base64;
 	chrome.downloads.download({
